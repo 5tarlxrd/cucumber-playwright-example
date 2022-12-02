@@ -8,6 +8,7 @@ module.exports = {
       'progress-bar',
       'json:test-results/cucumber-report.json',
       'html:test-results/cucumber-report.html',
+      'junit:test-results/cucumber-report.xml',
       'rerun:@rerun.txt'
     ],
     formatOptions: { snippetInterface: 'async-await' },
