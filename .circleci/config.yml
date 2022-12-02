@@ -21,6 +21,9 @@ jobs:
           name: Install Playwright
           command: npx playwright install --with-deps
       - run:
+          name: Install Playwright Chro,e
+          command: npx playwright install chrome
+      - run:
           name: Run Cucumber Tests
           command: npm run test
       - store_artifacts:
