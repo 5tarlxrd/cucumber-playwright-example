@@ -1,0 +1,23 @@
+{
+  "name": "cucumber-playwright-example",
+  "version": "0.0.1",
+  "description": "",
+  "main": "cucumber.js",
+  "scripts": {
+    "clean:results": "rm -rf test-results/videos & test-results/screenshots & mkdir test-results",
+    "test": "npm run clean:results & npx cucumber-js",
+    "test:tags": "npm run clean:results & npx cucumber-js --tags",
+    "test:failde": "npx cucumber-js @rerun.txt",
+    "test:dry": "npx cucumber-js --dry-run"
+  },
+  "keywords": [],
+  "author": "Maksym Zapisov",
+  "license": "ISC",
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.8.0",
+    "@playwright/test": "^1.28.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.3",
+    "dotenv": "^16.0.3"
+  }
+}
