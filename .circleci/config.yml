@@ -27,7 +27,7 @@ jobs:
           name: Run Cucumber Tests
           command: npm run test
           environment:
-            HEADLESS: true
+            HEADLESS: 'true'
       - store_artifacts:
           path: test-results/cucumber-report.html
       - store_artifacts:
