@@ -38,4 +38,4 @@ Feature: Scenarios related to Sample page
             | John Doe3 |                      | https://mytest.com | Test Comment 3 | 3-5        | Graduate  |
             | John Doe4 | wrong_email          | https://mytest.com | Test Comment 4 | 3-5        | Graduate  |
             | John Doe5 | john_doe_5@email.com | wrong_website      | Test Comment 5 | 3-5        | Graduate  |
-            | John Doe6 | john_doe_5@email.com | wrong_website      |                | 3-5        | Graduate  |
+            | John Doe6 | john_doe_5@email.com | https://mytest.com |                | 3-5        | Graduate  |
