@@ -1,7 +1,7 @@
 {
   "baseUrl": "https://www.globalsqa.com",
   "retry": 0,
-  "parallel": 1,
+  "parallel": 2,
   "record_video": true,
   "headless": false,
   "timeout": 25
