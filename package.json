@@ -5,9 +5,9 @@
   "main": "cucumber.js",
   "scripts": {
     "clean:results": "rm -rf test-results/videos & test-results/screenshots & mkdir test-results",
-    "test": "npm run clean:results & npx cucumber-js",
-    "test:tags": "npm run clean:results & npx cucumber-js --tags",
-    "test:failde": "npx cucumber-js @rerun.txt",
+    "test": "npm run clean:results & ENV=$npm_config_env BROWSER=$npm_config_browser_name npx cucumber-js",
+    "test:tags": "npm run clean:results & ENV=$npm_config_env BROWSER=$npm_config_browser_name npx cucumber-js --tags",
+    "test:failed": "ENV=$npm_config_env BROWSER=$npm_config_browser_name npx cucumber-js @rerun.txt",
     "test:dry": "npx cucumber-js --dry-run"
   },
   "keywords": [],

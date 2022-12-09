@@ -11,10 +11,6 @@ export default class BasePage {
     this.btnTopNavSearch = page.locator('.header_search .button_search');
   }
 
-  async open(path: string) {
-    await this.page.goto(`https://www.globalsqa.com/${path}`);
-  }
-
   async clickOnNavButtons(buttonName: string) {
     const navBtn = this.page.locator('#menu').locator('a', { hasText: buttonName });
     await navBtn.click();

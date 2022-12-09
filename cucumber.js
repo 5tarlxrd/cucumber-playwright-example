@@ -1,9 +1,10 @@
 require('dotenv').config({ path:'.env' });
+const config = require(`./config/${process.env.ENV || 'local'}.json`)
 
 module.exports = {
   default: {
     paths: ['./features/'],
-    parallel: parseInt(process.env.PARALLEL_SESSIONS),
+    parallel: parseInt(process.env.PARALLEL_SESSIONS) || config.parallel || 1, 
     format: [
       'progress-bar',
       'json:test-results/cucumber-report.json',
@@ -15,9 +16,9 @@ module.exports = {
     requireModule: ['ts-node/register'],
     require: [
       '**/steps/*.ts',
-      './src/runner/runner.ts'
+      './src/runner/runner.ts',
     ],
-    retry: parseInt(process.env.RETRIES),
+    retry:  parseInt(process.env.RETRIES) || config.retry || 0,
     publishQuiet: true,
     publish: false
   }

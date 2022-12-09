@@ -21,11 +21,13 @@ jobs:
           name: Install Playwright
           command: npx playwright install --with-deps
       - run:
-          name: Install Playwright Chrome
-          command: npx playwright install chrome
+          name: Install Browsers
+          command: |
+            npx playwright install chrome
+            npx playwright install msedge
       - run:
           name: Run Cucumber Tests
-          command: npm run test
+          command: npm run test --env=staging --browser-name=chrome
           environment:
             HEADLESS: 'true'
       - store_artifacts:
