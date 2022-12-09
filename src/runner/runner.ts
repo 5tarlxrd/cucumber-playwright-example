@@ -1,20 +1,21 @@
 import { BeforeAll, Before, AfterAll, After, formatterHelpers, Status, ITestCaseHookParameter, setDefaultTimeout } from '@cucumber/cucumber';
-import { chromium, webkit, firefox, Browser } from '@playwright/test';
+import { Browser } from '@playwright/test';
+import ConfigService from '../services/configService';
+import BrowserService from '../services/browserService';
 import fs from 'fs';
-const browserName = process.env.BROWSER || 'chromium';
-const browserChanel = process.env.BROWSER_CHANEL || 'chrome';
-const timeout = process.env.TEST_TIMEOUT || '15';
 
+const env = process.env.ENV || 'local'
+const browserName = process.env.BROWSER || 'chromium'
+const config = new ConfigService(env);
+const browserService = new BrowserService();
 let browser: Browser
 
-setDefaultTimeout(parseInt(timeout) * 1000);
+setDefaultTimeout(config.timeout * 1000);
 
 // Create a global browser for the test session.
 BeforeAll(async function () {
-  browser = await { chromium, webkit, firefox }[browserName]!.launch({
-    channel: browserChanel,
-    headless: process.env.HEADLESS === 'true' ? true : false
-  });
+  console.log(`Test runs on the ${env} environment`)
+  browser = await browserService.getBrowser(browserName);
 });
 
 AfterAll(async function () {
@@ -23,10 +24,12 @@ AfterAll(async function () {
 
 // Create a fresh browser context for each test.
 Before(async function () {
+  this.config = config;
   this.context = await browser.newContext({
     ignoreHTTPSErrors: true,
     acceptDownloads: true,
-    recordVideo: process.env.RECORD_VIDEO === "true" ? { dir: './test-results/videos' } : undefined,
+    baseURL: config.baseUrl,
+    recordVideo: config.record_video ? { dir: './test-results/videos' } : undefined,
   });
   this.page = await this.context?.newPage();
 });
@@ -42,7 +45,7 @@ After(async function ({ result, pickle, gherkinDocument }: ITestCaseHookParamete
   }
   await this.page?.close();
   await this.context?.close();
-  if (process.env.RECORD_VIDEO === 'true') {
+  if (config.record_video) {
     if (result?.status === Status.FAILED) {
       fs.renameSync(videoPath, `./test-results/videos/${pickle.name.replaceAll(' ', '_')}_(line_${line}).webm`);
       await this.attach(fs.readFileSync(`./test-results/videos/${pickle.name.replaceAll(' ', '_')}_(line_${line}).webm`), 'video/webm');
