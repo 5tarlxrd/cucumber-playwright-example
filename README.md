@@ -58,6 +58,13 @@ You can:
 -   `cucumber-report.json`: Cucumber JSON report.
 Outputs details of the test run in the legacy JSON format.
 
+## Running tests on Browserstack
+With this framework, you can run tests on Browserstack. To run tests on Browserstack, it's required to provide environment variables with Browserstack credentials `BROWSERSTACK_USERNAME` and `BROWSERSTACK_ACCESS_KEY`. The basic configuration is provided in the `browserstack-caps.json` file, where you can change [Browserstack capabilities](https://www.browserstack.com/docs/automate/playwright/playwright-capabilities). To run tests on Browserstack, you need to pass the CLI option `--bs`, like this:
+```sh
+npm run test --env=staging --browser-name=firefox --bs
+```
+Please note that if you run tests on Browserstack, the value for the `PARALLEL_SESSIONS` should equal the available parallel sessions in your pricing plan.
+
 ## Running tests on remote browsers (Selenium Standalone or Selenium Grid Hub)
 Playwright can [connect](https://playwright.dev/docs/selenium-grid) to Selenium Grid Hub that runs Selenium 4 to launch Google Chrome (`chrome`) or Microsoft Edge (`msedge`) browser, instead of the running browser on the local machine.
 To run tests on a remote browser provide an environment variable `SELENIUM_REMOTE_URL`, like this:

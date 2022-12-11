@@ -23,4 +23,15 @@ export default class BrowserService {
     }
     return await { chromium, webkit, firefox }[browser]!.launch(browserOptions);
   }
+
+  public async connectToBsBrowser(browser: string, bsCaps: any): Promise<Browser> {
+    if (browser === 'chrome' || browser === 'msedge') {
+      return await chromium.connect(
+        `wss://cdp.browserstack.com/playwright?caps=${encodeURIComponent(JSON.stringify(bsCaps))}`
+      );
+    }
+    return await { chromium, webkit, firefox }[browser]!.connect(
+      `wss://cdp.browserstack.com/playwright?caps=${encodeURIComponent(JSON.stringify(bsCaps))}`
+    );
+  }
 }

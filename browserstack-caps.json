@@ -1,0 +1,37 @@
+{
+  "chrome": {
+    "browser": "chrome",
+    "browser_version": "latest",
+    "os": "osx",
+    "os_version": "ventura",
+    "browserstack.console": "info"
+  },
+  "msedge": {
+    "browser": "edge",
+    "browser_version": "latest",
+    "os": "windows",
+    "os_version": "11",
+    "browserstack.console": "info"
+  },
+  "chromium": {
+    "browser": "playwright-chromium",
+    "browser_version": "latest",
+    "os": "osx",
+    "os_version": "ventura",
+    "browserstack.console": "info"
+  },
+  "firefox": {
+    "browser": "playwright-firefox",
+    "browser_version": "latest",
+    "os": "osx",
+    "os_version": "ventura",
+    "browserstack.console": "info"
+  },
+  "webkit": {
+    "browser": "playwright-webkit",
+    "browser_version": "latest",
+    "os": "osx",
+    "os_version": "ventura",
+    "browserstack.console": "info"
+  }
+}
